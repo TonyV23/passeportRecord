@@ -4,6 +4,8 @@ import InputOutput.Io;
 
 import java.util.ArrayList;
 
+import static Main.run.saisirEtVerificationSexe;
+
 public class Citoyen {
     private String nom;
     private String prenom;
@@ -74,7 +76,7 @@ public class Citoyen {
 
     public static void EnregistrerCitoyen(){
         new Citoyen(InputOutput.Io.setString("\nNom : "),InputOutput.Io.setString("\nPrenom : "),
-                Io.setString("Sexe :"),Io.setINT("Année de naissance :"),Io.setString("Lieu de naissance :"));
+                saisirEtVerificationSexe(),Io.setINT("\nAnnée de naissance :"),Io.setString("\nLieu de naissance :"));
         System.out.print("\n******* Le Citoyen a été enregistré avec success *******\n");
     }
 
@@ -96,12 +98,10 @@ public class Citoyen {
 
     public static void modifierCitoyen(){
         if (!liste_de_tous_les_citoyens.isEmpty()){
-            System.err.print("\n******* LISTE DE TOUS LES DONNEURS *******\n");
             AfficherCitoyen();
             liste_de_tous_les_citoyens.set(InputOutput.Io.setINT("Numero du citoyen à modifier :")-1,
                     new Citoyen(InputOutput.Io.setString("\nNom : "),InputOutput.Io.setString("\nPrenom : "),
-                            Io.setString("Sexe :"),Io.setINT("Année de naissance :"),Io.setString("Lieu de naissance :")));
-            System.err.print("\n******* LISTE DE TOUS LES CITOYENS MISE A JOUR *******\n");
+                            saisirEtVerificationSexe(),Io.setINT("\nAnnée de naissance :"),Io.setString("\nLieu de naissance :")));
             liste_de_tous_les_citoyens.remove(liste_de_tous_les_citoyens.size()-1);
             AfficherCitoyen();
         }else
@@ -112,12 +112,9 @@ public class Citoyen {
     public static void supprimerCitoyen(){
         if (!liste_de_tous_les_citoyens.isEmpty()){
             AfficherCitoyen();
-            liste_de_tous_les_citoyens.remove(InputOutput.Io.setINT("Numero du citoyen à supprimer :")-1);
+            liste_de_tous_les_citoyens.remove(InputOutput.Io.setINT("\nNumero du citoyen à supprimer :")-1);
             AfficherCitoyen();
         }else
             System.err.print("\n******* Erreur Aucun Citoyen n'a été enregistré *******\n");
     }
-
-
-
 }
