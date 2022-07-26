@@ -22,6 +22,14 @@ public class run {
         return sexe;
     }
 
+    // methode qui va generer un nombre aleatoire pour le passport
+    public static int random_integer(){
+        int min_number = 10;
+        int max_number = 500;
+
+        return (int) (Math.random()*(max_number-min_number+1)+min_number);
+    }
+
     // fonction de demarrage
     static void Menu () {
         System.out.print("\n1.Enregistrer un Citoyen");

@@ -4,6 +4,7 @@ import InputOutput.Io;
 
 import java.util.ArrayList;
 
+import static Main.run.random_integer;
 import static Main.run.saisirEtVerificationSexe;
 
 public class Citoyen {
@@ -12,15 +13,17 @@ public class Citoyen {
     private String sexe;
     private int annee_de_naissance;
     private String lieu_de_naissance;
+    private int numero_passeport ;
 
 
     // le constructeur de la classe
-    public Citoyen(String nom, String prenom, String sexe, int annee_de_naissance, String lieu_de_naissance) {
+    public Citoyen(String nom, String prenom, String sexe, int annee_de_naissance, String lieu_de_naissance, int numero_passeport) {
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
         this.annee_de_naissance = annee_de_naissance;
         this.lieu_de_naissance = lieu_de_naissance;
+        this.numero_passeport = numero_passeport;
         liste_de_tous_les_citoyens.add(this);
     }
     // la liste qui va contenir tous les citoyens
@@ -74,9 +77,17 @@ public class Citoyen {
 
     // les methodes de la classe
 
+    public int getNumero_passeport() {
+        return numero_passeport;
+    }
+
+    public void setNumero_passeport(int numero_passeport) {
+        this.numero_passeport = numero_passeport;
+    }
+
     public static void EnregistrerCitoyen(){
         new Citoyen(InputOutput.Io.setString("\nNom : "),InputOutput.Io.setString("\nPrenom : "),
-                saisirEtVerificationSexe(),Io.setINT("\nAnnée de naissance :"),Io.setString("\nLieu de naissance :"));
+                saisirEtVerificationSexe(),Io.setINT("\nAnnée de naissance :"),Io.setString("\nLieu de naissance :"),random_integer());
         System.out.print("\n******* Le Citoyen a été enregistré avec success *******\n");
     }
 
@@ -89,7 +100,8 @@ public class Citoyen {
                                 "Prenom :"+liste_de_tous_les_citoyens.get(i).getPrenom()+"\t"+
                                 "Sexe :"+liste_de_tous_les_citoyens.get(i).getSexe()+"\t"+
                                 "Année Naissance :"+liste_de_tous_les_citoyens.get(i).getAnnee_de_naissance()+"\t"+
-                                "Lieu de naissance :"+liste_de_tous_les_citoyens.get(i).getLieu_de_naissance()+"\n"+"\n"
+                                "Lieu de naissance :"+liste_de_tous_les_citoyens.get(i).getLieu_de_naissance()+"\t"+
+                                "Numero passeport :"+liste_de_tous_les_citoyens.get(i).getNumero_passeport()+"\n"+"\n"
                 );
             }
         }else
@@ -101,7 +113,7 @@ public class Citoyen {
             AfficherCitoyen();
             liste_de_tous_les_citoyens.set(InputOutput.Io.setINT("Numero du citoyen à modifier :")-1,
                     new Citoyen(InputOutput.Io.setString("\nNom : "),InputOutput.Io.setString("\nPrenom : "),
-                            saisirEtVerificationSexe(),Io.setINT("\nAnnée de naissance :"),Io.setString("\nLieu de naissance :")));
+                            saisirEtVerificationSexe(),Io.setINT("\nAnnée de naissance :"),Io.setString("\nLieu de naissance :"), random_integer()));
             liste_de_tous_les_citoyens.remove(liste_de_tous_les_citoyens.size()-1);
             AfficherCitoyen();
         }else
